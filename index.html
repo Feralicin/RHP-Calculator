@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <title>RE:Heads, Please! Calculator</title>
+    <link rel="stylesheet" href="styles.css"/>
+  </head>
+
+  <body>
+    <div class="PageLayout">
+      <div>
+        <div class="Card">
+          <h2>Coin</h2>
+          <div class="TileGrid" id="CoinGrid"></div>
+          <select id="SelectedCoin" hidden></select>
+        </div>
+
+        <div class="Card">
+          <h2>Halloween event</h2>
+          <div class="FormRow">
+            <label>Headless Lord tier</label>
+            <select id="HeadlessLordTier">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="Card">
+          <h2>Belt</h2>
+          <div class="TileGrid" id="BeltGrid"></div>
+          <select id="SelectedBelt" hidden></select>
+        </div>
+
+        <div class="Card">
+          <h2>Necklace</h2>
+          <div class="TileGrid" id="NeckGrid"></div>
+          <select id="SelectedNecklace" hidden></select>
+        </div>
+
+        <div class="Card">
+          <h2>Enchant</h2>
+          <div class="TileGrid" id="EnchantGrid"></div>
+          <select id="SelectedEnchant" hidden></select>
+          <div class="TierButtonGroup" id="TierButtons"></div>
+
+          <select id="SelectedEnchantTier" hidden>
+            <option>I</option>
+            <option>II</option>
+            <option>III</option>
+            <option>IV</option>
+          </select>
+        </div>
+
+        <div class="Card">
+          <h2>Engraving</h2>
+          <div class="FormRow">
+            <label>Engraving</label>
+            <select id="Engraving"></select>
+          </div>
+        </div>
+
+        <div class="Card">
+          <h2>Progress</h2>
+          <div class="FormRow">
+            <label>Coin level</label>
+            <input type="number" id="CoinLevel" value="0" min="0" max="125"/>
+          </div>
+
+          <div class="FormRow">
+            <label>Prestige</label>
+            <input type="number" id="PrestigeLevel" value="0" min="0" max="5"/>
+          </div>
+        </div>
+
+        <div class="Card">
+          <h2>Skill points</h2>
+          <div class="FormRow">
+            <label>Money Earn</label>
+            <div class="SliderControl">
+              <input type="range" id="SkillMoney" value="0" min="0" max="25" step="1"/>
+              <span id="SkillMoneyValue">0</span>
+            </div>
+          </div>
+
+          <div class="FormRow">
+            <label>Flip Speed</label>
+            <div class="SliderControl">
+              <input type="range" id="SkillFlipSpeed" value="0" min="0" max="25" step="1"/>
+              <span id="SkillFlipSpeedValue">0</span>
+            </div>
+          </div>
+
+          <div class="FormRow">
+            <label>Crit Chance</label>
+            <div class="SliderControl">
+              <input type="range" id="SkillCritChance" value="0" min="0" max="25" step="1"/>
+              <span id="SkillCritChanceValue">0</span>
+            </div>
+          </div>
+
+          <div class="FormRow">
+            <label>Crit Multiply</label>
+            <div class="SliderControl">
+              <input type="range" id="SkillCritMultiplier" value="0" min="0" max="25" step="1"/>
+              <span id="SkillCritMultiplierValue">0</span>
+            </div>
+          </div>
+
+          <div class="FormRow">
+            <label>Luck</label>
+            <div class="SliderControl">
+              <input type="range" id="SkillLuck" value="0" min="0" max="25" step="1"/>
+              <span id="SkillLuckValue">0</span>
+            </div>
+          </div>
+
+          <div class="FormRow">
+            <label>Experience</label>
+            <div class="SliderControl">
+              <input type="range" id="SkillExp" value="0" min="0" max="25" step="1"/>
+              <span id="SkillExpValue">0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="Card">
+          <h2>Coin upgrades</h2>
+          <div class="FormRow">
+            <label>Money Earn</label>
+            <div class="SliderControl">
+              <input type="range" id="UpgradeMoney" value="0" min="0" max="10" step="1"/>
+              <span id="UpgradeMoneyValue">0</span>
+            </div>
+          </div>
+
+          <div class="FormRow">
+            <label>Flip Speed</label>
+            <div class="SliderControl">
+              <input type="range" id="UpgradeFlipSpeed" value="0" min="0" max="10" step="1"/>
+              <span id="UpgradeFlipSpeedValue">0</span>
+            </div>
+          </div>
+
+          <div class="FormRow">
+            <label>Crit Chance</label>
+            <div class="SliderControl">
+              <input type="range" id="UpgradeCritChance" value="0" min="0" max="10" step="1"/>
+              <span id="UpgradeCritChanceValue">0</span>
+            </div>
+          </div>
+
+          <div class="FormRow">
+            <label>Crit Multiply</label>
+            <div class="SliderControl">
+              <input type="range" id="UpgradeCritMultiplier" value="0" min="0" max="10" step="1"/>
+              <span id="UpgradeCritMultiplierValue">0</span>
+            </div>
+          </div>
+
+          <div class="FormRow">
+            <label>Head Chance</label>
+            <div class="SliderControl">
+              <input type="range" id="UpgradeHeadChance" value="0" min="0" max="10" step="1"/>
+              <span id="UpgradeHeadChanceValue">0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="Card">
+          <h2>Boosts</h2>
+          <div class="CheckboxGrid">
+            <label>Rich Soda <select id="WealthSoda"><option value="0">None</option><option value="1">+25%</option><option value="2">Super +30%</option></select></label>
+            <label>Flip Energy <select id="SpeedSoda"><option value="0">None</option><option value="1">+25%</option><option value="2">Super +30%</option></select></label>
+            <label><input type="checkbox" id="VipGamepass"/>VIP gamepass</label>
+            <label><input type="checkbox" id="MoneyCharm"/>Money Wealth +15% money</label>
+            <label><input type="checkbox" id="CandyCharm"/>Candy Wealth +15% candy</label>
+            <label><input type="checkbox" id="CandapaloozaMoney"/>Candapalooza P2 +10% money</label>
+            <label><input type="checkbox" id="CandapaloozaGlobalMoney"/>Candapalooza global +50% money</label>
+            <label><input type="checkbox" id="CandapaloozaCandy10"/>Candapalooza P3 +10% candy</label>
+            <label><input type="checkbox" id="CandapaloozaCandy20"/>Candapalooza P7 +10% candy</label>
+            <label><input type="checkbox" id="CandapaloozaGlobalCandy"/>Candapalooza global +10% candy</label>
+            <label><input type="checkbox" id="WeekendBoost"/>Weekend Boost +10% candy</label>
+          </div>
+          <div class="FormRow">
+            <label>Session boost tier</label>
+            <div class="SliderControl">
+              <input type="range" id="SessionBoost" value="0" min="0" max="5" step="1"/>
+              <span id="SessionBoostValue">0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="Card">
+          <h2>Extras</h2>
+          <div class="FormRow">
+            <label>Friends in server</label>
+            <input type="number" id="FriendsInServer" value="0" min="0" max="30"/>
+          </div>
+          <button type="button" class="Button" id="ClearStorage">Clear saved settings</button>
+        </div>
+      </div>
+      <div>
+        <div class="Card HeroCard" id="HeroSummary"></div>
+
+        <div class="Card">
+          <h2>Results per hour</h2>
+          <div class="StatGrid" id="HourlyStats"></div>
+        </div>
+
+        <div class="Card">
+          <h2>Per flip</h2>
+          <div class="StatGrid" id="PerFlipStats"></div>
+        </div>
+
+        <div class="Card">
+          <div class="ScrollContainer"><table id="StatTotalsTable"></table></div>
+        </div>
+
+        <div class="Card">
+          <h2>Active effects</h2>
+          <div class="Note" id="ActiveEffects"></div>
+        </div>
+
+        <div class="Card">
+          <h2>Every coin with this build</h2>
+          <div class="ScrollContainer"><table id="CoinComparisonTable"></table></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
