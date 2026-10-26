@@ -303,6 +303,7 @@ input[type="checkbox"]:focus-visible {
   padding: 3px;
   scrollbar-width: thin;
   scrollbar-color: var(--BorderStrong) transparent;
+  overflow-x: hidden;
 }
 
 .TileGrid::-webkit-scrollbar {
@@ -316,8 +317,9 @@ input[type="checkbox"]:focus-visible {
 
 .Tile {
   background: var(--RaisedBackground);
+  aspect-ratio: 1;
   border: 1px solid transparent;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 6px 2px 4px;
   cursor: pointer;
   color: var(--TextColor);
@@ -326,6 +328,7 @@ input[type="checkbox"]:focus-visible {
   flex-direction: column;
   align-items: center;
   gap: 2px;
+  border: 1.5px solid rgb(255, 255, 255, 0.2);
   transition:
     border-color 0.15s ease,
     background 0.15s ease,
@@ -333,7 +336,6 @@ input[type="checkbox"]:focus-visible {
 }
 
 .Tile:hover {
-  border-color: var(--BorderStrong);
   transform: translateY(-1px);
 }
 
@@ -342,16 +344,11 @@ input[type="checkbox"]:focus-visible {
   outline-offset: 2px;
 }
 
-.Tile.Selected {
-  border-color: var(--TextColor);
-  background: var(--CardBackground);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--TextColor) 12%, transparent);
-}
-
 .Tile img {
-  width: 44px;
-  height: 44px;
+  width: 52.269px;
+  height: 52.269px;
   object-fit: contain;
+  margin: auto;
 }
 
 .Tile i {
@@ -372,11 +369,16 @@ input[type="checkbox"]:focus-visible {
   min-height: 22px;
   display: flex;
   align-items: center;
+  display: none;
 }
 
 .Tile.Selected span {
   color: var(--TextColor);
   font-weight: 600;
+}
+
+.Tile.Selected {
+  border: 1.5px solid #000
 }
 
 .TierButtonGroup {
@@ -494,7 +496,6 @@ input[type="checkbox"]:focus-visible {
   letter-spacing: 0.01em;
   margin-right: 4px;
   color: #111;
-  border: 1px solid transparent;
 }
 
 .Badge[style*="var(--BorderColor)"] {
@@ -520,7 +521,6 @@ input[type="checkbox"]:focus-visible {
 }
 
 #EnchantGrid .Tile img {
-  background: var(--ChipBackground);
   border-radius: 10px;
   padding: 5px;
 }
@@ -753,26 +753,73 @@ tr.SelectedRow td {
   padding-top: 0;
 }
 
-.Tile[data-rarity] {
-  background-color: #000;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), var(--RarityBackground);
+.Tile {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
-.Tile[data-rarity]:hover {
-  border-color: rgba(255, 255, 255, 0.45);
+.Tile[data-rarity]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid transparent;
+  border-radius: inherit;
+  background: var(--RarityBackground) border-box;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.63;
 }
 
 .Tile[data-rarity] span {
   color: rgba(255, 255, 255, 0.78);
-}
-
-.Tile[data-rarity].Selected {
-  background-color: #000;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), var(--RarityBackground);
-  box-shadow: 0 0 0 1px var(--TextColor);
+  display: none;
 }
 
 .Tile[data-rarity].Selected span {
   color: #fff;
   font-weight: 600;
+}
+
+.Tile {
+  position: relative;
+  isolation: isolate;
+}
+
+.Tile .Glow {
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  pointer-events: none;
+  background-color: #fff;
+  -webkit-mask: url("./images/Glow.png") center / contain no-repeat;
+  mask: url("./images/Glow.png") center / contain no-repeat;
+  opacity: 0.11;
+}
+
+.Tile.Selected .Glow {
+  background: #000
+}
+
+.Tile[data-rarity].Selected::before {
+  background: #000 border-box
+}
+
+.Tile[data-rarity] .Glow {
+  background: var(--RarityBackground);
+}
+
+.Tile[data-rarity] {
+  border: none;
+}
+
+.Tile[data-rarity].Selected {
+  border: none;
+}
+
+#EnchantGrid .Tile.Selected {
+  border: 1.5px solid rgb(0, 0, 0);
 }

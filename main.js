@@ -376,14 +376,14 @@ FillSelect("Engraving", Engravings);
 GetElement("SelectedCoin").value = "Penny";
 
 const RarityColors = {
-  Common: "#9aa0a6",
-  Uncommon: "#5bd16b",
-  Rare: "#4aa3ff",
-  Epic: "#b36bff",
-  Legendary: "#ffb02e",
-  Mythic: "#ff5d5d",
-  Limited: "#ff8c00",
-  Godly: "linear-gradient(45deg, #ff335f 0%, #ff8b38 25.9%, #13ffb8 51.2%, #4674ca 74.9%, #a12eff 100%)",
+  Common: "#FFFFFF",
+  Uncommon: "#55FF7F",
+  Rare: "#55AAFF",
+  Epic: "#5555FF",
+  Legendary: "#FFFF7F",
+  Mythic: "#FF3434",
+  Limited: "#FF8C00",
+  Godly: "linear-gradient(-45deg, #ff335f 0%, #ff8b38 25.9%, #13ffb8 51.2%, #4674ca 74.9%, #a12eff 100%)",
 };
 
 const TierColors = { I: "#ffffff", II: "#ffff7f", III: "#aaffff", IV: "#dcaaff" };
@@ -413,12 +413,10 @@ const RarityBackground = (Rarity) => {
 const BuildTile = (Item, ImageGroup) => {
   const Info = GetItemInfo(ImageGroup, Item);
   const Rarity = Info && Info.Rarity;
-  const RarityAttributes =
-    Rarity && RarityColors[Rarity]
-      ? ` data-rarity="${Rarity}" style="--RarityBackground:${RarityBackground(Rarity)}"`
-      : "";
+  const RarityAttributes = Rarity && RarityColors[Rarity] ? ` data-rarity="${Rarity}" style="--RarityBackground:${RarityBackground(Rarity)}"` : "";
   const Title = Rarity ? `${PrettyName(Item)} (${Rarity})` : PrettyName(Item);
-  return `<button type="button" class="Tile" data-value="${Item}" title="${Title}"${RarityAttributes}>${Item === "None" ? "<i></i>" : `<img src="${Images[ImageGroup][Item] || ""}" alt="">`}<span>${PrettyName(Item)}</span></button>`;
+
+  return `<button type="button" class="Tile" data-value="${Item}" title="${Title}"${RarityAttributes}>${Item === "None" ? "" : `<img src="${Images[ImageGroup][Item] || ""}" alt="">`}<span>${PrettyName(Item)}</span><div class="Glow"></div></button>`;
 };
 
 const GroupBySection = (Items, ImageGroup) => {
