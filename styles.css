@@ -122,6 +122,40 @@ h1 {
   margin: 0 0 12px;
 }
 
+.CardHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.CardHeading h2 {
+  margin: 0;
+}
+
+.TileSearch {
+  width: min(180px, 60%);
+  padding: 6px 9px;
+  border: 1px solid var(--BorderColor);
+  border-radius: 6px;
+  background: var(--RaisedBackground);
+  color: var(--TextColor);
+  font: inherit;
+  font-size: 12px;
+}
+
+.TileSearch:focus-visible {
+  outline: none;
+  border-color: var(--TextColor);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--TextColor) 12%, transparent);
+}
+
+.Tile[hidden],
+.TileSectionHeader[hidden] {
+  display: none;
+}
+
 .FormRow {
   display: grid;
   grid-template-columns: 130px 1fr;
@@ -333,6 +367,11 @@ input[type="checkbox"]:focus-visible {
     border-color 0.15s ease,
     background 0.15s ease,
     transform 0.15s ease;
+}
+
+.Tile[hidden],
+.TileSectionHeader[hidden] {
+  display: none;
 }
 
 .Tile:hover {
@@ -818,6 +857,15 @@ tr.SelectedRow td {
 
 .Tile[data-rarity].Selected {
   border: none;
+}
+
+.Tile.HeadlessLordTierTile span {
+  display: block;
+  min-height: 0;
+  color: var(--TextColor);
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1;
 }
 
 #EnchantGrid .Tile.Selected {

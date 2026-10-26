@@ -317,6 +317,19 @@ const InnateAbilities = {
   SkaterCoin: "Skater",
 };
 
+const FlipAnimations = {
+  Default: 1,
+  Slap: 1,
+  FingerSpin: 1,
+  KnuckleRoll: 1,
+  FingerSnap: 1,
+  ZeroGravity: 1,
+  DoubleFlip: 0.5,
+  Mouth: 1,
+  Flick: 0.5,
+  GunShot: 1,
+}
+
 const CoinFlipsPerSecond = { KrakenCoin: 0.997, ChronosCoin: 0.775 };
 
 const BaseSecondsPerFlip = 1.667;
@@ -410,13 +423,13 @@ const RarityBackground = (Rarity) => {
   return Color.startsWith("linear-gradient") ? Color : `linear-gradient(${Color}, ${Color})`;
 };
 
-const BuildTile = (Item, ImageGroup) => {
+const BuildTile = (Item, ImageGroup, SectionName = "") => {
   const Info = GetItemInfo(ImageGroup, Item);
   const Rarity = Info && Info.Rarity;
   const RarityAttributes = Rarity && RarityColors[Rarity] ? ` data-rarity="${Rarity}" style="--RarityBackground:${RarityBackground(Rarity)}"` : "";
   const Title = Rarity ? `${PrettyName(Item)} (${Rarity})` : PrettyName(Item);
 
-  return `<button type="button" class="Tile" data-value="${Item}" title="${Title}"${RarityAttributes}>${Item === "None" ? "" : `<img src="${Images[ImageGroup][Item] || ""}" alt="">`}<span>${PrettyName(Item)}</span><div class="Glow"></div></button>`;
+  return `<button type="button" class="Tile" data-value="${Item}" data-search="${PrettyName(Item).toLowerCase()}" data-section="${SectionName}" title="${Title}"${RarityAttributes}>${Item === "None" ? "" : `<img src="${Images[ImageGroup][Item] || ""}" alt="">`}<span>${PrettyName(Item)}</span><div class="Glow"></div></button>`;
 };
 
 const GroupBySection = (Items, ImageGroup) => {
@@ -433,7 +446,21 @@ const GroupBySection = (Items, ImageGroup) => {
   return SectionNames.map((SectionName) => [SectionName, Sections.get(SectionName)]);
 };
 
-const BuildTileGrid = (GridId, SelectId, Items, ImageGroup) => {
+const FilterTileGrid = (Grid, Query) => {
+  const SearchTerm = Query.trim().toLowerCase();
+  Grid.querySelectorAll(".Tile").forEach((TileButton) => {
+    TileButton.hidden =
+      TileButton.dataset.value !== "None" && !TileButton.dataset.search.includes(SearchTerm);
+  });
+  Grid.querySelectorAll(".TileSectionHeader").forEach((Header) => {
+    Header.hidden = !Array.from(Grid.querySelectorAll('.Tile[data-section="' + Header.dataset.section + '"]'))
+      .some((TileButton) => !TileButton.hidden);
+  });
+};
+
+let HeadlessLordTierExpanded = false;
+
+const BuildTileGrid = (GridId, SelectId, Items, ImageGroup, SearchId) => {
   const Grid = GetElement(GridId);
   const Sections = GroupBySection(
     Items.filter((Item) => Item !== "None"),
@@ -443,15 +470,47 @@ const BuildTileGrid = (GridId, SelectId, Items, ImageGroup) => {
   const HasNone = Items.includes("None");
   const Parts = [];
   Sections.forEach(([SectionName, SectionItems], SectionIndex) => {
-    if (ShowHeaders) Parts.push(`<div class="TileSectionHeader">${SectionName}</div>`);
-    if (HasNone && SectionIndex === 0) Parts.push(BuildTile("None", ImageGroup));
-    SectionItems.forEach((Item) => Parts.push(BuildTile(Item, ImageGroup)));
+    if (ShowHeaders) Parts.push(`<div class="TileSectionHeader" data-section="${SectionName}">${SectionName}</div>`);
+    if (HasNone && SectionIndex === 0) Parts.push(BuildTile("None", ImageGroup, SectionName));
+    SectionItems.forEach((Item) => {
+      Parts.push(BuildTile(Item, ImageGroup, SectionName));
+      if (Item === "HeadlessLordCoin") {
+        Images.HeadlessLordTiers.forEach((ImageSource, Index) => {
+          const Tier = Index + 1;
+          Parts.push(
+            `<button type="button" class="Tile HeadlessLordTierTile" data-tier="${Tier}" data-search="headless lord tier ${Tier}" data-section="Halloween 2026" title="Headless Lord tier ${Tier}" aria-label="Headless Lord tier ${Tier}" hidden><img src="${ImageSource}" alt=""><div class="Glow"></div></button>`,
+          );
+        });
+      }
+    });
   });
   Grid.innerHTML = Parts.join("");
+  if (SearchId) {
+    const Search = GetElement(SearchId);
+    Search.addEventListener("input", () => {
+      if (GridId === "CoinGrid") HeadlessLordTierExpanded = false;
+      FilterTileGrid(Grid, Search.value);
+      RenderAll();
+    });
+    FilterTileGrid(Grid, Search.value);
+  }
   Grid.onclick = (ClickEvent) => {
+    const TierTile = ClickEvent.target.closest(".HeadlessLordTierTile");
+    if (TierTile) {
+      GetElement("HeadlessLordTier").value = TierTile.dataset.tier;
+      HeadlessLordTierExpanded = false;
+      RenderAll();
+      return;
+    }
     const TileButton = ClickEvent.target.closest(".Tile");
     if (!TileButton) return;
+    const WasHeadlessLordSelected =
+      TileButton.dataset.value === "HeadlessLordCoin" &&
+      GetElement(SelectId).value === "HeadlessLordCoin";
     GetElement(SelectId).value = TileButton.dataset.value;
+    HeadlessLordTierExpanded =
+      TileButton.dataset.value === "HeadlessLordCoin" &&
+      (!WasHeadlessLordSelected || !HeadlessLordTierExpanded);
     RenderAll();
   };
 };
@@ -463,9 +522,9 @@ const HighlightSelected = (GridId, SelectedValue) =>
       TileButton.classList.toggle("Selected", TileButton.dataset.value === SelectedValue),
     );
 
-BuildTileGrid("CoinGrid", "SelectedCoin", GameData.Coins.map((Coin) => Coin.Name), "Coins");
-BuildTileGrid("BeltGrid", "SelectedBelt", ["None"].concat(Object.keys(GameData.Belts)), "Belts");
-BuildTileGrid("NeckGrid", "SelectedNecklace", ["None"].concat(Object.keys(GameData.Necklaces)), "Necklaces");
+BuildTileGrid("CoinGrid", "SelectedCoin", GameData.Coins.map((Coin) => Coin.Name), "Coins", "CoinSearch");
+BuildTileGrid("BeltGrid", "SelectedBelt", ["None"].concat(Object.keys(GameData.Belts)), "Belts", "BeltSearch");
+BuildTileGrid("NeckGrid", "SelectedNecklace", ["None"].concat(Object.keys(GameData.Necklaces)), "Necklaces", "NecklaceSearch");
 BuildTileGrid("EnchantGrid", "SelectedEnchant", ["None"].concat(Object.keys(GameData.Enchants)), "Enchants");
 
 GetElement("TierButtons").innerHTML = ["I", "II", "III", "IV"]
@@ -817,6 +876,12 @@ const RenderAll = () => {
     GetElement(Slider.id + "Value").textContent = Slider.value;
   });
   const CoinName = GetElement("SelectedCoin").value;
+  document.querySelectorAll(".HeadlessLordTierTile").forEach((TierTile) =>
+    {
+      TierTile.hidden = CoinName !== "HeadlessLordCoin" || !HeadlessLordTierExpanded;
+      TierTile.classList.toggle("Selected", TierTile.dataset.tier === String(Settings.HeadlessLordTier));
+    },
+  );
   const Result = CalculateBuild(CoinName, Settings);
   RenderHero(Result, Settings, CoinName);
   HighlightSelected("CoinGrid", CoinName);

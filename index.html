@@ -11,35 +11,28 @@
     <div class="PageLayout">
       <div>
         <div class="Card">
-          <h2>Coin</h2>
+          <div class="CardHeading"><h2>Coin</h2><input type="search" class="TileSearch" id="CoinSearch" placeholder="Search coins" aria-label="Search coins"/></div>
           <div class="TileGrid" id="CoinGrid"></div>
           <select id="SelectedCoin" hidden></select>
+          <select id="HeadlessLordTier" hidden>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+          </select>
         </div>
 
         <div class="Card">
-          <h2>Halloween event</h2>
-          <div class="FormRow">
-            <label>Headless Lord tier</label>
-            <select id="HeadlessLordTier">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-              <option>7</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="Card">
-          <h2>Belt</h2>
+          <div class="CardHeading"><h2>Belt</h2><input type="search" class="TileSearch" id="BeltSearch" placeholder="Search belts" aria-label="Search belts"/></div>
           <div class="TileGrid" id="BeltGrid"></div>
           <select id="SelectedBelt" hidden></select>
         </div>
 
         <div class="Card">
-          <h2>Necklace</h2>
+          <div class="CardHeading"><h2>Necklace</h2><input type="search" class="TileSearch" id="NecklaceSearch" placeholder="Search necklaces" aria-label="Search necklaces"/></div>
           <div class="TileGrid" id="NeckGrid"></div>
           <select id="SelectedNecklace" hidden></select>
         </div>
