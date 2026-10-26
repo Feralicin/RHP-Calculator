@@ -1,4 +1,5 @@
 const GameData = {
+  // Section default to Standard
   Coins: [
     { Name: "Penny", Rarity: "Common", BaseEarn: 10, HeadMultiplier: 1.3, TailMultiplier: 0.5 },
     { Name: "DalgonaCoin", Rarity: "Common", BaseEarn: 15, HeadMultiplier: 1.3, TailMultiplier: 0.5 },
@@ -23,87 +24,95 @@ const GameData = {
     { Name: "KrakenCoin", Rarity: "Godly", BaseEarn: 3500, HeadMultiplier: 1.3, TailMultiplier: 0.5 },
     { Name: "TrinityCoin", Rarity: "Godly", BaseEarn: 4250, HeadMultiplier: 1.3, TailMultiplier: 0.5 },
     { Name: "ChronosCoin", Rarity: "Godly", BaseEarn: 5000, HeadMultiplier: 1.3, TailMultiplier: 0.5 },
-    { Name: "HeadlessLordCoin", Rarity: "Godly", BaseEarn: 100, HeadMultiplier: 1.3, TailMultiplier: 0.5 },
+    { Name: "HeadlessLordCoin", Rarity: "Godly", BaseEarn: 100, HeadMultiplier: 1.3, TailMultiplier: 0.5, Section: "Halloween 2026" },
   ],
 
   Belts: {
-    TrainEngineer: { FlipSpeed: 3, Exp: 3, Luck: 3 },
-    Police: { HeadChance: 2, MoneyEarn: 3, Exp: 3 },
-    Cloth: { FlipSpeed: 3, CriticalChance: 3, Luck: 3 },
-    Librarian: { Luck: 5, FlipSpeed: 5, CriticalMultiply: 10, HeadChance: 5 },
-    Skater: { FlipSpeed: 5, Exp: 2, MoneyEarn: 5 },
-    Employee: { MoneyEarn: 5, Exp: 5, HeadChance: 5, Luck: 10 },
-    Artist: { FlipSpeed: 5, Luck: 10, CriticalChance: 10, Exp: 5 },
-    Exercise: { MoneyEarn: 10, CriticalChance: 20, Exp: 30, CriticalMultiply: 10 },
-    VIP: { FlipSpeed: 10, CriticalChance: 10, Luck: 10, HeadChance: 10 },
-    Magical: { MoneyEarn: 10, HeadChance: 10, Luck: 10, CriticalChance: 10 },
-    Thief: { Luck: 10, FlipSpeed: 10, MoneyEarn: 10 },
-    Vacation: { FlipSpeed: 10, CriticalMultiply: 25, Exp: 25, HeadChance: 10 },
-    Photographer: { CriticalChance: 20, FlipSpeed: 15, CriticalMultiply: 20 },
-    Jewel: { Luck: 30, MoneyEarn: 10, CriticalMultiply: 15, CriticalChance: 20 },
-    Alchemist: { MoneyEarn: 10, FlipSpeed: 10, Exp: 20, CriticalChance: 10 },
-    WaterPlay: { HeadChance: 10, Exp: 25, FlipSpeed: 15 },
-    Survivor: { Luck: 30, MoneyEarn: 10, CriticalChance: 15, Exp: 30 },
-    Sleepingbeauty: { MoneyEarn: 20, HeadChance: 15, Exp: 30, Luck: 20 },
-    BlackRose: { FlipSpeed: 20, CriticalChance: 20, CriticalMultiply: 35, Luck: 20 },
-    Miner: { MiningFlipSpeed: 15, MiningLuck: 15 },
-    Blacksmith: { CoinResetChance: -12, UpgradeCost: -10 },
-    Hacker: { MoneyEarn: 20, FlipSpeed: 20, Exp: 25, Luck: 10 },
-    DeepWeb: { FlipSpeed: 25, HeadChance: 20, Luck: 20, CriticalMultiply: 35 },
-    Seraphim: { FlipSpeed: 50, Luck: 35, CriticalMultiply: 35, Exp: 35 },
-    Void: { MoneyEarn: 45, HeadChance: 25, CriticalChance: 35 },
-    SteamPunk: { FlipSpeed: 35, CriticalChance: 40, CriticalMultiply: 55 },
-    TrickorTreater: { EventCurrencyMultiply: 5, Luck: 10, MoneyEarn: 10 },
-    Clown: { WalkSpeed: 3, HeadChance: 5, FlipSpeed: 5, Exp: 10 },
-    Mummy: { EventCurrencyMultiply: 6, WalkSpeed: 3, Luck: 15, MoneyEarn: 15 },
-    Frankenstein: { FlipSpeed: 15, Exp: 10, CriticalMultiply: 10, CriticalChance: 10 },
-    JackoLantern: { EventCurrencyMultiply: 7.5, WalkSpeed: 4, Luck: 20, FlipSpeed: 10 },
-    Wizard: { EnchantBookChance: 5 },
-    Jason: { CriticalChance: 13, CriticalMultiply: 13, Luck: 13, MoneyEarn: 13 },
-    Witch: { MiningPotionDuration: 25, MiningPotionEffect: 10, EventCurrencyMultiply: 10, Luck: 30 },
-    Vampire: { EventCurrencyMultiply: 15, Luck: 30, FlipSpeed: 20, MoneyEarn: 20 },
-    Beelzebub: { EventCurrencyMultiply: 25, Luck: 40, Exp: 50, FlipSpeed: 25 },
-    ContentCreator: { FlipSpeed: 20, MoneyEarn: 20, CriticalChance: 10, CriticalMultiply: 20 },
+    TrainEngineer: { Rarity: "Common", FlipSpeed: 3, Exp: 3, Luck: 3 },
+    Police: { Rarity: "Common", HeadChance: 2, MoneyEarn: 3, Exp: 3 },
+    Cloth: { Rarity: "Common", FlipSpeed: 3, CriticalChance: 3, Luck: 3 },
+    Skater: { Rarity: "Uncommon", FlipSpeed: 5, Exp: 2, MoneyEarn: 5 },
+    Employee: { Rarity: "Uncommon", MoneyEarn: 5, Exp: 5, HeadChance: 5, Luck: 10 },
+    Librarian: { Rarity: "Uncommon", Luck: 5, FlipSpeed: 5, CriticalMultiply: 10, HeadChance: 5 },
+    Artist: { Rarity: "Uncommon", FlipSpeed: 5, Luck: 10, CriticalChance: 10, Exp: 5 },
+    Magical: { Rarity: "Rare", MoneyEarn: 10, HeadChance: 10, Luck: 10, CriticalChance: 10 },
+    Thief: { Rarity: "Rare", Luck: 10, FlipSpeed: 10, MoneyEarn: 10 },
+    Exercise: { Rarity: "Rare", MoneyEarn: 10, CriticalChance: 20, Exp: 30, CriticalMultiply: 10 },
+    Jewel: { Rarity: "Epic", Luck: 30, MoneyEarn: 10, CriticalMultiply: 15, CriticalChance: 20 },
+    Alchemist: { Rarity: "Epic", MoneyEarn: 10, FlipSpeed: 10, Exp: 20, CriticalChance: 10 },
+    Survivor: { Rarity: "Epic", Luck: 30, MoneyEarn: 10, CriticalChance: 15, Exp: 30 },
+    Photographer: { Rarity: "Epic", CriticalChance: 20, FlipSpeed: 15, CriticalMultiply: 20 },
+    Sleepingbeauty: { Rarity: "Legendary", MoneyEarn: 20, HeadChance: 15, Exp: 30, Luck: 20 },
+    BlackRose: { Rarity: "Legendary", FlipSpeed: 20, CriticalChance: 20, CriticalMultiply: 35, Luck: 20 },
+    Hacker: { Rarity: "Mythic", MoneyEarn: 20, FlipSpeed: 20, Exp: 25, Luck: 10 },
+    DeepWeb: { Rarity: "Mythic", FlipSpeed: 25, HeadChance: 20, Luck: 20, CriticalMultiply: 35 },
+    Void: { Rarity: "Godly", MoneyEarn: 45, HeadChance: 25, CriticalChance: 35 },
+    SteamPunk: { Rarity: "Godly", FlipSpeed: 35, CriticalChance: 40, CriticalMultiply: 55 },
+    Seraphim: { Rarity: "Godly", FlipSpeed: 50, Luck: 35, CriticalMultiply: 35, Exp: 35 },
+
+    Miner: { Rarity: "Legendary", MiningFlipSpeed: 15, MiningLuck: 15, Section: "Crafting" },
+    Blacksmith: { Rarity: "Legendary", CoinResetChance: -12, UpgradeCost: -10, Section: "Crafting" },
+
+    Vacation: { Rarity: "Limited", FlipSpeed: 10, CriticalMultiply: 25, Exp: 25, HeadChance: 10, Section: "Summer 2026" },
+    WaterPlay: { Rarity: "Limited", HeadChance: 10, Exp: 25, FlipSpeed: 15, Section: "Summer 2026" },
+
+    TrickorTreater: { Rarity: "Common", EventCurrencyMultiply: 5, Luck: 10, MoneyEarn: 10, Section: "Halloween 2026" },
+    Clown: { Rarity: "Common", WalkSpeed: 3, HeadChance: 5, FlipSpeed: 5, Exp: 10, Section: "Halloween 2026" },
+    Frankenstein: { Rarity: "Uncommon", FlipSpeed: 15, Exp: 10, CriticalMultiply: 10, CriticalChance: 10, Section: "Halloween 2026" },
+    Mummy: { Rarity: "Uncommon", EventCurrencyMultiply: 6, WalkSpeed: 3, Luck: 15, MoneyEarn: 15, Section: "Halloween 2026" },
+    Wizard: { Rarity: "Rare", EnchantBookChance: 5, Section: "Halloween 2026" },
+    JackoLantern: { Rarity: "Rare", EventCurrencyMultiply: 7.5, WalkSpeed: 4, Luck: 20, FlipSpeed: 10, Section: "Halloween 2026" },
+    Jason: { Rarity: "Epic", CriticalChance: 13, CriticalMultiply: 13, Luck: 13, MoneyEarn: 13, Section: "Halloween 2026" },
+    Witch: { Rarity: "Legendary", MiningPotionDuration: 25, MiningPotionEffect: 10, EventCurrencyMultiply: 10, Luck: 30, Section: "Halloween 2026" },
+    Vampire: { Rarity: "Mythic", EventCurrencyMultiply: 15, Luck: 30, FlipSpeed: 20, MoneyEarn: 20, Section: "Halloween 2026" },
+    Beelzebub: { Rarity: "Godly", EventCurrencyMultiply: 25, Luck: 40, Exp: 50, FlipSpeed: 25, Section: "Halloween 2026" },
+
+    VIP: { Rarity: "Rare", FlipSpeed: 10, CriticalChance: 10, Luck: 10, HeadChance: 10, Section: "Exclusive" },
+    ContentCreator: { Rarity: "Mythic", FlipSpeed: 20, MoneyEarn: 20, CriticalChance: 10, CriticalMultiply: 20, Section: "Exclusive" },
   },
 
   Necklaces: {
-    TrainEngineer: { FlipSpeed: 3, Exp: 3, Luck: 3 },
-    Police: { HeadChance: 2, MoneyEarn: 3, Exp: 3 },
-    Cloth: { FlipSpeed: 3, CriticalChance: 3, Luck: 3 },
-    Librarian: { Luck: 5, FlipSpeed: 5, CriticalMultiply: 10, HeadChance: 5 },
-    Skater: { FlipSpeed: 5, Exp: 2, MoneyEarn: 5 },
-    Employee: { MoneyEarn: 5, Exp: 5, HeadChance: 5, Luck: 10 },
-    Artist: { FlipSpeed: 5, Luck: 10, CriticalChance: 10, Exp: 5 },
-    Exercise: { MoneyEarn: 10, CriticalChance: 20, Exp: 30, CriticalMultiply: 10 },
-    VIP: { FlipSpeed: 10, CriticalChance: 10, Luck: 10, HeadChance: 10 },
-    Magical: { MoneyEarn: 10, HeadChance: 10, Luck: 10, CriticalChance: 10 },
-    Thief: { Luck: 10, FlipSpeed: 10, MoneyEarn: 10 },
-    Vacation: { FlipSpeed: 10, CriticalMultiply: 25, Exp: 25, HeadChance: 10 },
-    Photographer: { CriticalChance: 20, FlipSpeed: 15, CriticalMultiply: 20 },
-    Jewel: { Luck: 30, MoneyEarn: 10, CriticalMultiply: 15, CriticalChance: 20 },
-    Alchemist: { MoneyEarn: 10, FlipSpeed: 10, Exp: 20, CriticalChance: 10 },
-    WaterPlay: { HeadChance: 10, Exp: 25, FlipSpeed: 15 },
-    Survivor: { Luck: 30, MoneyEarn: 10, CriticalChance: 15, Exp: 30 },
-    Sleepingbeauty: { MoneyEarn: 20, HeadChance: 15, Exp: 30, Luck: 20 },
-    BlackRose: { FlipSpeed: 20, CriticalChance: 20, CriticalMultiply: 35, Luck: 20 },
-    Miner: { MiningFlipSpeed: 20, MiningLuck: 20 },
-    Blacksmith: { CoinResetChance: -12, UpgradeCost: -10 },
-    Hacker: { MoneyEarn: 20, FlipSpeed: 20, Exp: 25, Luck: 25 },
-    DeepWeb: { FlipSpeed: 25, HeadChance: 20, Luck: 20, CriticalMultiply: 35 },
-    Seraphim: { FlipSpeed: 50, Luck: 35, CriticalMultiply: 35, Exp: 35 },
-    Void: { MoneyEarn: 45, HeadChance: 25, CriticalChance: 35 },
-    SteamPunk: { FlipSpeed: 20, CriticalChance: 40, CriticalMultiply: 45 },
-    TrickorTreater: { EventCurrencyMultiply: 5, Luck: 10, MoneyEarn: 10 },
-    Clown: { WalkSpeed: 3, HeadChance: 5, FlipSpeed: 5, Exp: 10 },
-    Mummy: { EventCurrencyMultiply: 6, WalkSpeed: 3, Luck: 15, MoneyEarn: 15 },
-    Frankenstein: { FlipSpeed: 15, Exp: 10, CriticalMultiply: 10, CriticalChance: 10 },
-    JackoLantern: { EventCurrencyMultiply: 7.5, WalkSpeed: 4, Luck: 20, FlipSpeed: 10 },
-    Wizard: { EnchantBookChance: 5 },
-    Jason: { CriticalChance: 13, CriticalMultiply: 13, Luck: 13, MoneyEarn: 13 },
-    Witch: { MiningPotionDuration: 25, MiningPotionEffect: 10, EventCurrencyMultiply: 10, Luck: 30 },
-    Vampire: { EventCurrencyMultiply: 15, Luck: 30, FlipSpeed: 20, MoneyEarn: 20 },
-    Beelzebub: { EventCurrencyMultiply: 25, Luck: 40, Exp: 50, FlipSpeed: 25 },
-    ContentCreator: { FlipSpeed: 20, MoneyEarn: 20, CriticalChance: 10, CriticalMultiply: 20 },
+    TrainEngineer: { Rarity: "Common", FlipSpeed: 3, Exp: 3, Luck: 3 },
+    Police: { Rarity: "Common", HeadChance: 2, MoneyEarn: 3, Exp: 3 },
+    Cloth: { Rarity: "Common", FlipSpeed: 3, CriticalChance: 3, Luck: 3 },
+    Skater: { Rarity: "Uncommon", FlipSpeed: 5, Exp: 2, MoneyEarn: 5 },
+    Employee: { Rarity: "Uncommon", MoneyEarn: 5, Exp: 5, HeadChance: 5, Luck: 10 },
+    Librarian: { Rarity: "Uncommon", Luck: 5, FlipSpeed: 5, CriticalMultiply: 10, HeadChance: 5 },
+    Artist: { Rarity: "Uncommon", FlipSpeed: 5, Luck: 10, CriticalChance: 10, Exp: 5 },
+    Magical: { Rarity: "Rare", MoneyEarn: 10, HeadChance: 10, Luck: 10, CriticalChance: 10 },
+    Thief: { Rarity: "Rare", Luck: 10, FlipSpeed: 10, MoneyEarn: 10 },
+    Exercise: { Rarity: "Rare", MoneyEarn: 10, CriticalChance: 20, Exp: 30, CriticalMultiply: 10 },
+    Jewel: { Rarity: "Epic", Luck: 30, MoneyEarn: 10, CriticalMultiply: 15, CriticalChance: 20 },
+    Alchemist: { Rarity: "Epic", MoneyEarn: 10, FlipSpeed: 10, Exp: 20, CriticalChance: 10 },
+    Survivor: { Rarity: "Epic", Luck: 30, MoneyEarn: 10, CriticalChance: 15, Exp: 30 },
+    Photographer: { Rarity: "Epic", CriticalChance: 20, FlipSpeed: 15, CriticalMultiply: 20 },
+    Sleepingbeauty: { Rarity: "Legendary", MoneyEarn: 20, HeadChance: 15, Exp: 30, Luck: 20 },
+    BlackRose: { Rarity: "Legendary", FlipSpeed: 20, CriticalChance: 20, CriticalMultiply: 35, Luck: 20 },
+    Hacker: { Rarity: "Mythic", MoneyEarn: 20, FlipSpeed: 20, Exp: 25, Luck: 10 },
+    DeepWeb: { Rarity: "Mythic", FlipSpeed: 25, HeadChance: 20, Luck: 20, CriticalMultiply: 35 },
+    Void: { Rarity: "Godly", MoneyEarn: 45, HeadChance: 25, CriticalChance: 35 },
+    SteamPunk: { Rarity: "Godly", FlipSpeed: 35, CriticalChance: 40, CriticalMultiply: 55 },
+    Seraphim: { Rarity: "Godly", FlipSpeed: 50, Luck: 35, CriticalMultiply: 35, Exp: 35 },
+
+    Miner: { Rarity: "Legendary", MiningFlipSpeed: 15, MiningLuck: 15, Section: "Crafting" },
+    Blacksmith: { Rarity: "Legendary", CoinResetChance: -12, UpgradeCost: -10, Section: "Crafting" },
+
+    Vacation: { Rarity: "Limited", FlipSpeed: 10, CriticalMultiply: 25, Exp: 25, HeadChance: 10, Section: "Summer 2026" },
+    WaterPlay: { Rarity: "Limited", HeadChance: 10, Exp: 25, FlipSpeed: 15, Section: "Summer 2026" },
+
+    TrickorTreater: { Rarity: "Common", EventCurrencyMultiply: 5, Luck: 10, MoneyEarn: 10, Section: "Halloween 2026" },
+    Clown: { Rarity: "Common", WalkSpeed: 3, HeadChance: 5, FlipSpeed: 5, Exp: 10, Section: "Halloween 2026" },
+    Frankenstein: { Rarity: "Uncommon", FlipSpeed: 15, Exp: 10, CriticalMultiply: 10, CriticalChance: 10, Section: "Halloween 2026" },
+    Mummy: { Rarity: "Uncommon", EventCurrencyMultiply: 6, WalkSpeed: 3, Luck: 15, MoneyEarn: 15, Section: "Halloween 2026" },
+    Wizard: { Rarity: "Rare", EnchantBookChance: 5, Section: "Halloween 2026" },
+    JackoLantern: { Rarity: "Rare", EventCurrencyMultiply: 7.5, WalkSpeed: 4, Luck: 20, FlipSpeed: 10, Section: "Halloween 2026" },
+    Jason: { Rarity: "Epic", CriticalChance: 13, CriticalMultiply: 13, Luck: 13, MoneyEarn: 13, Section: "Halloween 2026" },
+    Witch: { Rarity: "Legendary", MiningPotionDuration: 25, MiningPotionEffect: 10, EventCurrencyMultiply: 10, Luck: 30, Section: "Halloween 2026" },
+    Vampire: { Rarity: "Mythic", EventCurrencyMultiply: 15, Luck: 30, FlipSpeed: 20, MoneyEarn: 20, Section: "Halloween 2026" },
+    Beelzebub: { Rarity: "Godly", EventCurrencyMultiply: 25, Luck: 40, Exp: 50, FlipSpeed: 25, Section: "Halloween 2026" },
+
+    VIP: { Rarity: "Rare", FlipSpeed: 10, CriticalChance: 10, Luck: 10, HeadChance: 10, Section: "Exclusive" },
+    ContentCreator: { Rarity: "Mythic", FlipSpeed: 20, MoneyEarn: 20, CriticalChance: 10, CriticalMultiply: 20, Section: "Exclusive" },
   },
 
   Enchants: {
@@ -373,7 +382,8 @@ const RarityColors = {
   Epic: "#b36bff",
   Legendary: "#ffb02e",
   Mythic: "#ff5d5d",
-  Godly: "linear-gradient(90deg, #ff708f 0%, #ffae74 25.9%, #5affcd 51.2%, #7e9eda 74.9%, #bd6dff 100%)",
+  Limited: "#ff8c00",
+  Godly: "linear-gradient(45deg, #ff335f 0%, #ff8b38 25.9%, #13ffb8 51.2%, #4674ca 74.9%, #a12eff 100%)",
 };
 
 const TierColors = { I: "#ffffff", II: "#ffff7f", III: "#aaffff", IV: "#dcaaff" };
@@ -387,12 +397,59 @@ const DisplayNames = {
 const PrettyName = (Name) =>
   DisplayNames[Name] || Name.replace(/Coin$/, "").replace(/([a-z])([A-Z])/g, "$1 $2");
 
+const DefaultSection = "Standard";
+
+const GetItemInfo = (ImageGroup, Item) =>
+  ImageGroup === "Coins"
+    ? GameData.Coins.find((Coin) => Coin.Name === Item)
+    : GameData[ImageGroup] && GameData[ImageGroup][Item];
+
+const RarityBackground = (Rarity) => {
+  const Color = RarityColors[Rarity];
+  if (!Color) return "";
+  return Color.startsWith("linear-gradient") ? Color : `linear-gradient(${Color}, ${Color})`;
+};
+
+const BuildTile = (Item, ImageGroup) => {
+  const Info = GetItemInfo(ImageGroup, Item);
+  const Rarity = Info && Info.Rarity;
+  const RarityAttributes =
+    Rarity && RarityColors[Rarity]
+      ? ` data-rarity="${Rarity}" style="--RarityBackground:${RarityBackground(Rarity)}"`
+      : "";
+  const Title = Rarity ? `${PrettyName(Item)} (${Rarity})` : PrettyName(Item);
+  return `<button type="button" class="Tile" data-value="${Item}" title="${Title}"${RarityAttributes}>${Item === "None" ? "<i></i>" : `<img src="${Images[ImageGroup][Item] || ""}" alt="">`}<span>${PrettyName(Item)}</span></button>`;
+};
+
+const GroupBySection = (Items, ImageGroup) => {
+  const Sections = new Map();
+  Items.forEach((Item) => {
+    const Info = GetItemInfo(ImageGroup, Item);
+    const SectionName = (Info && Info.Section) || DefaultSection;
+    if (!Sections.has(SectionName)) Sections.set(SectionName, []);
+    Sections.get(SectionName).push(Item);
+  });
+  const SectionNames = Array.from(Sections.keys()).sort(
+    (A, B) => (B === DefaultSection) - (A === DefaultSection),
+  );
+  return SectionNames.map((SectionName) => [SectionName, Sections.get(SectionName)]);
+};
+
 const BuildTileGrid = (GridId, SelectId, Items, ImageGroup) => {
   const Grid = GetElement(GridId);
-  Grid.innerHTML = Items.map(
-    (Item) =>
-      `<button type="button" class="Tile" data-value="${Item}" title="${PrettyName(Item)}">${Item === "None" ? "<i></i>" : `<img src="${Images[ImageGroup][Item] || ""}" alt="">`}<span>${PrettyName(Item)}</span></button>`,
-  ).join("");
+  const Sections = GroupBySection(
+    Items.filter((Item) => Item !== "None"),
+    ImageGroup,
+  );
+  const ShowHeaders = Sections.length > 1;
+  const HasNone = Items.includes("None");
+  const Parts = [];
+  Sections.forEach(([SectionName, SectionItems], SectionIndex) => {
+    if (ShowHeaders) Parts.push(`<div class="TileSectionHeader">${SectionName}</div>`);
+    if (HasNone && SectionIndex === 0) Parts.push(BuildTile("None", ImageGroup));
+    SectionItems.forEach((Item) => Parts.push(BuildTile(Item, ImageGroup)));
+  });
+  Grid.innerHTML = Parts.join("");
   Grid.onclick = (ClickEvent) => {
     const TileButton = ClickEvent.target.closest(".Tile");
     if (!TileButton) return;
@@ -507,7 +564,8 @@ const CalculateBuild = (CoinName, Settings) => {
     StatSources.push([Source, Stat, Value]);
   };
   const AddAllStats = (Source, StatObject) => {
-    for (const Stat in StatObject || {}) AddStat(Source, Stat, StatObject[Stat]);
+    for (const Stat in StatObject || {})
+      if (typeof StatObject[Stat] === "number") AddStat(Source, Stat, StatObject[Stat]);
   };
 
   if (Settings.HasVip) AddStat("VIP", "MoneyEarn", 20);

@@ -737,3 +737,42 @@ tr.SelectedRow td {
   outline: 2px solid var(--TextColor);
   outline-offset: 2px;
 }
+
+.TileSectionHeader {
+  grid-column: 1 / -1;
+  padding: 8px 2px 3px;
+  border-bottom: 1px solid var(--BorderColor);
+  color: var(--MutedText);
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.TileSectionHeader:first-child {
+  padding-top: 0;
+}
+
+.Tile[data-rarity] {
+  background-color: #000;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), var(--RarityBackground);
+}
+
+.Tile[data-rarity]:hover {
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.Tile[data-rarity] span {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.Tile[data-rarity].Selected {
+  background-color: #000;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), var(--RarityBackground);
+  box-shadow: 0 0 0 1px var(--TextColor);
+}
+
+.Tile[data-rarity].Selected span {
+  color: #fff;
+  font-weight: 600;
+}
