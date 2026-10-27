@@ -915,7 +915,7 @@ const RenderAll = () => {
     StatCell("Seconds", FormatDecimal(Result.SecondsPerFlip, 3)),
     StatCell(
       "Flip speed multiplier",
-      FormatDecimal(Result.FlipSpeedMultiplier) + "x" + (Result.FlipSpeedMultiplier >= 2.5 ? " (cap)" : ""),
+      FormatDecimal(Result.FlipSpeedMultiplier * 100, 1) + "%" + (Result.FlipSpeedMultiplier >= 2.5 ? " (cap)" : ""),
     ),
     StatCell("Head chance", FormatDecimal(Result.HeadProbability * 100, 1) + "%"),
     StatCell("Money", FormatNumber(Result.MoneyPerFlip)),
